@@ -1,0 +1,640 @@
+
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>TDSNET.org - Nickserv</title>
+</head>
+
+<body style="background-attachment: fixed">
+
+<p><b><font face="Arial" size="5" color="#FF0000">NickServ</font></b></p>
+<p>&nbsp;</p>
+
+<ul>
+	<li><font face="Arial"><b>HELP</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<b>NickServ</b> allows you to &quot;register&quot; a nickname and
+&nbsp;prevent others from using it. The following
+&nbsp;commands allow for registration and maintenance of
+&nbsp;nicknames; to use them, type <b>/msg NickServ <u>command</u></b>.
+&nbsp;For more information on a specific command, type
+&nbsp;<b>/msg NickServ HELP <u>command</u></b>.
+&nbsp;
+&nbsp;    REGISTER   Register a nickname
+&nbsp;    GROUP      Join a group
+&nbsp;    IDENTIFY   Identify yourself with your password
+&nbsp;    ACCESS     Modify the list of authorized addresses
+&nbsp;    SET        Set options, including kill protection
+&nbsp;    DROP       Cancel the registration of a nickname
+&nbsp;    RECOVER    Kill another user who has taken your nick
+&nbsp;    RELEASE    Regain custody of your nick after RECOVER
+&nbsp;    SENDPASS   Forgot your password? Try this
+&nbsp;
+&nbsp;Other commands: GHOST, ALIST, GLIST, INFO, LIST, LOGOUT, 
+&nbsp;                STATUS
+&nbsp;
+&nbsp;<b>NOTICE:</b> This service is intended to provide a way for
+&nbsp;IRC users to ensure their identity is not compromised.
+&nbsp;It is <b>NOT</b> intended to facilitate &quot;stealing&quot; of
+&nbsp;nicknames or other malicious actions.  Abuse of NickServ
+&nbsp;will result in, at minimum, loss of the abused
+&nbsp;nickname(s).
+&nbsp;
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>REGISTER</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>REGISTER <u>password</u> <u>[email]</u></b>
+&nbsp;
+&nbsp;Registers your nickname in the NickServ database.  Once
+&nbsp;your nick is registered, you can use the <b>SET</b> and <b>ACCESS</b>
+&nbsp;commands to configure your nick's settings as you like
+&nbsp;them.  Make sure you remember the password you use when
+&nbsp;registering - you'll need it to make changes to your nick
+&nbsp;later.  (Note that <b>case matters!</b>  <u>EPONA</u>, <u>Epona</u>, and 
+&nbsp;<u>epona</u> are all different passwords!)
+&nbsp;
+&nbsp;Guidelines on choosing passwords:
+&nbsp;
+&nbsp;Passwords should not be easily guessable.  For example,
+&nbsp;using your real name as a password is a bad idea.  Using
+&nbsp;your nickname as a password is a much worse idea ;) and,
+&nbsp;in fact, NickServ will not allow it.  Also, short
+&nbsp;passwords are vulnerable to trial-and-error searches, so
+&nbsp;you should choose a password at least 5 characters long.
+&nbsp;Finally, the space character cannot be used in passwords.
+&nbsp;
+&nbsp;The parameter <u>email</u> is optional and will set the email
+&nbsp;for your nick immediately. However, it may be required
+&nbsp;on certain networks.
+&nbsp;Your privacy is respected; this e-mail won't be given to
+&nbsp;any third-party person.
+&nbsp;
+&nbsp;This command also creates a new group for your nickname,
+&nbsp;that will allow you to register other nicks later sharing
+&nbsp;the same configuration, the same set of memos and the 
+&nbsp;same channel privileges. For more information on this
+&nbsp;feature, type <b>/msg NickServ HELP GROUP</b>.
+&nbsp;
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>GROUP</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>GROUP <u>target</u> <u>password</u></b>
+&nbsp;
+&nbsp;This command makes your nickname join the <u>target</u> nickname's 
+&nbsp;group. <u>password</u> is the password of the target nickname.
+&nbsp;
+&nbsp;Joining a group will allow you to share your configuration,
+&nbsp;memos, and channel privileges with all the nicknames in the
+&nbsp;group, and much more!
+&nbsp; 
+&nbsp;A group exists as long as it is useful. This means that even
+&nbsp;if a nick of the group is dropped, you won't lose the
+&nbsp;shared things described above, as long as there is at
+&nbsp;least one nick remaining in the group.
+&nbsp;
+&nbsp;You can use this command even if you have not registered
+&nbsp;your nick yet. If your nick is already registered, you'll
+&nbsp;need to identify yourself before using this command. Type 
+&nbsp;<u>/msg NickServ HELP IDENTIFY</u> for more information. This
+&nbsp;last may be not possible on your IRC network.
+&nbsp;
+&nbsp;It is recommended to use this command with a non-registered
+&nbsp;nick because it will be registered automatically when 
+&nbsp;using this command. You may use it with a registered nick (to 
+&nbsp;change your group) only if your network administrators allowed 
+&nbsp;it.
+&nbsp;
+&nbsp;You can only be in one group at a time. Group merging is
+&nbsp;not possible.
+&nbsp;
+&nbsp;<u>Note</u>: all the nicknames of a group have the same password.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>IDENTIFY</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>IDENTIFY <u>password</u></b>
+&nbsp;
+&nbsp;Tells NickServ that you are really the owner of this
+&nbsp;nick.  Many commands require you to authenticate yourself
+&nbsp;with this command before you use them.  The password
+&nbsp;should be the same one you sent with the <b>REGISTER</b>
+&nbsp;command.
+&nbsp;
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>LOGOUT</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>LOGOUT</b>
+&nbsp;
+&nbsp;This reverses the effect of the <b>IDENTIFY</b> command, i.e.
+&nbsp;make you not recognized as the real owner of the nick
+&nbsp;anymore. Note, however, that you won't be asked to reidentify
+&nbsp;yourself.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>DROP</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>DROP [<u>nickname</u>]</b>
+&nbsp;
+&nbsp;Drops your nickname from the NickServ database.  A nick
+&nbsp;that has been dropped is free for anyone to re-register.
+&nbsp;
+&nbsp;You may drop a nick within your group by passing it
+&nbsp;as the <b>nick</b> parameter.
+&nbsp;
+&nbsp;In order to use this command, you must first identify
+&nbsp;with your password (<b>/msg NickServ HELP IDENTIFY</b> for more
+&nbsp;information).
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>ACCESS</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>ACCESS ADD <u>mask</u></b>
+&nbsp;        <b>ACCESS DEL <u>mask</u></b>
+&nbsp;        <b>ACCESS LIST</b>
+&nbsp;
+&nbsp;Modifies or displays the access list for your nick.  This
+&nbsp;is the list of addresses which will be automatically
+&nbsp;recognized by NickServ as allowed to use the nick.  If
+&nbsp;you want to use the nick from a different address, you
+&nbsp;need to send an <b>IDENTIFY</b> command to make NickServ
+&nbsp;recognize you.
+&nbsp;
+&nbsp;Examples:
+&nbsp;
+&nbsp;    <b>ACCESS ADD anyone@*.bepeg.com</b>
+&nbsp;        Allows access to user <b>anyone</b> from any machine in
+&nbsp;        the <b>bepeg.com</b> domain.
+&nbsp;
+&nbsp;    <b>ACCESS DEL anyone@*.bepeg.com</b>
+&nbsp;        Reverses the previous command.
+&nbsp;
+&nbsp;    <b>ACCESS LIST</b>
+&nbsp;        Displays the current access list.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>SET</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>SET <u>option</u> <u>parameters</u></b>
+&nbsp;
+&nbsp;Sets various nickname options.  <u>option</u> can be one of:
+&nbsp;
+&nbsp;    DISPLAY    Set the display of your group in Services
+&nbsp;    PASSWORD   Set your nickname password
+&nbsp;    LANGUAGE   Set the language Services will use when
+&nbsp;                   sending messages to you
+&nbsp;    URL        Associate a URL with your nickname
+&nbsp;    EMAIL      Associate an E-mail address with your nickname
+&nbsp;    ICQ        Associate an ICQ number with your nickname
+&nbsp;    GREET      Associate a greet message with your nickname
+&nbsp;    KILL       Turn protection on or off
+&nbsp;    SECURE     Turn nickname security on or off
+&nbsp;    PRIVATE    Prevent your nickname from appearing in a
+&nbsp;                   <b>/msg NickServ LIST</b>
+&nbsp;    HIDE       Hide certain pieces of nickname information
+&nbsp;    MSG        Change the communication method of Services
+&nbsp;
+&nbsp;In order to use this command, you must first identify
+&nbsp;with your password (<b>/msg NickServ HELP IDENTIFY</b> for more
+&nbsp;information).
+&nbsp;
+&nbsp;Type <b>/msg NickServ HELP SET <u>option</u></b> for more information
+&nbsp;on a specific option.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>SET DISPLAY</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>SET DISPLAY <u>new-display</u></b>
+&nbsp;
+&nbsp;Changes the display used to refer to your nickname group in 
+&nbsp;Services. The new display MUST be a nick of your group.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>SET PASSWORD</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>SET PASSWORD <u>new-password</u></b>
+&nbsp;
+&nbsp;Changes the password used to identify you as the nick's
+&nbsp;owner.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>SET LANGUAGE</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>SET LANGUAGE <u>number</u></b>
+&nbsp;
+&nbsp;Changes the language Services uses when sending messages to
+&nbsp;you (for example, when responding to a command you send).
+&nbsp;<u>number</u> should be chosen from the following list of
+&nbsp;supported languages:
+&nbsp;
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>SET URL</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>SET URL <u>url</u></b>
+&nbsp;
+&nbsp;Associates the given URL with your nickname.  This URL
+&nbsp;will be displayed whenever someone requests information
+&nbsp;on your nick with the <b>INFO</b> command.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>SET EMAIL</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>SET EMAIL <u>address</u></b>
+&nbsp;
+&nbsp;Associates the given E-mail address with your nickname.
+&nbsp;This address will be displayed whenever someone requests
+&nbsp;information on the channel with the <b>INFO</b> command.
+&nbsp;
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>SET ICQ</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>SET ICQ <u>number</u></b>
+&nbsp;
+&nbsp;Associates the given ICQ number with your nickname.  This 
+&nbsp;number will be displayed whenever someone requests 
+&nbsp;information on your nick with the <b>INFO</b> command.
+&nbsp;
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>SET GREET</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>SET GREET <u>message</u></b>
+&nbsp;
+&nbsp;Makes the given message the greet of your nickname, that
+&nbsp;will be displayed when joining a channel that has GREET
+&nbsp;option enabled, provided that you have the necessary 
+&nbsp;access on it.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>SET KILL</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>SET KILL {ON | QUICK | IMMED | OFF}</b>
+&nbsp;
+&nbsp;Turns the automatic protection option for your nick
+&nbsp;on or off.  With protection on, if another user
+&nbsp;tries to take your nick, they will be given one minute to
+&nbsp;change to another nick, after which NickServ will forcibly change
+&nbsp;their nick.
+&nbsp;
+&nbsp;If you select <b>QUICK</b>, the user will be given only 20 seconds
+&nbsp;to change nicks instead of the usual 60.  If you select
+&nbsp;<b>IMMED</b>, user's nick will be changed immediately <u>without</u> being
+&nbsp;warned first or given a chance to change their nick; please
+&nbsp;do not use this option unless necessary.  Also, your
+&nbsp;network's administrators may have disabled this option.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>SET SECURE</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>SET SECURE {ON | OFF}</b>
+&nbsp;
+&nbsp;Turns NickServ's security features on or off for your
+&nbsp;nick.  With <b>SECURE</b> set, you must enter your password
+&nbsp;before you will be recognized as the owner of the nick,
+&nbsp;regardless of whether your address is on the access
+&nbsp;list.  However, if you are on the access list, NickServ
+&nbsp;will not auto-kill you regardless of the setting of the
+&nbsp;<b>KILL</b> option.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>SET PRIVATE</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>SET PRIVATE {ON | OFF}</b>
+&nbsp;
+&nbsp;Turns NickServ's privacy option on or off for your nick.
+&nbsp;With <b>PRIVATE</b> set, your nickname will not appear in
+&nbsp;nickname lists generated with NickServ's <b>LIST</b> command.
+&nbsp;(However, anyone who knows your nickname can still get
+&nbsp;information on it using the <b>INFO</b> command.)
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>SET HIDE</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>SET HIDE {EMAIL | USERMASK | QUIT} {ON | OFF}</b>
+&nbsp;
+&nbsp;Allows you to prevent certain pieces of information from
+&nbsp;being displayed when someone does a NickServ <b>INFO</b> on your
+&nbsp;nick.  You can hide your E-mail address (<b>EMAIL</b>), last seen
+&nbsp;user@host mask (<b>USERMASK</b>), and last quit message (<b>QUIT</b>).
+&nbsp;The second parameter specifies whether the information should
+&nbsp;be displayed (<b>OFF</b>) or hidden (<b>ON</b>).
+&nbsp;
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>SET MSG</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>SET MSG {ON | OFF}</b>
+&nbsp;
+&nbsp;Allows you to choose the way Services are communicating with 
+&nbsp;you. With <b>MSG</b> set, Services will use messages, else they'll 
+&nbsp;use notices.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>RECOVER</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>RECOVER <u>nickname</u> [<u>password</u>]</b>
+&nbsp;
+&nbsp;Allows you to recover your nickname if someone else has
+&nbsp;taken it; this does the same thing that NickServ does
+&nbsp;automatically if someone tries to use a kill-protected
+&nbsp;nick.
+&nbsp;
+&nbsp;When you give this command, NickServ will bring a fake
+&nbsp;user online with the same nickname as the user you're
+&nbsp;trying to recover your nick from.  This causes the IRC
+&nbsp;servers to disconnect the other user.  This fake user will
+&nbsp;will remain online for one minute to ensure that the other
+&nbsp;user does not immediately reconnect; after that minute, you
+&nbsp;can reclaim your nick.  Alternatively, use the <b>RELEASE</b>
+&nbsp;command (<b>/msg NickServ HELP RELEASE</b>) to get the nick
+&nbsp;back sooner.
+&nbsp;
+&nbsp;In order to use the <b>RECOVER</b> command for a nick, your
+&nbsp;current address as shown in /WHOIS must be on that nick's
+&nbsp;access list, you must be identified and in the group of
+&nbsp;that nick, or you must supply the correct password for
+&nbsp;the nickname.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>RELEASE</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>RELEASE <u>nickname</u> [<u>password</u>]</b>
+&nbsp;
+&nbsp;Instructs NickServ to remove any hold on your nickname
+&nbsp;caused by automatic kill protection or use of the <b>RECOVER</b>
+&nbsp;command.  By default, such holds last for one minute;
+&nbsp;this command gets rid of them sooner.
+&nbsp;
+&nbsp;In order to use the <b>RELEASE</b> command for a nick, your
+&nbsp;current address as shown in /WHOIS must be on that nick's
+&nbsp;access list, you must be identified and in the group of
+&nbsp;that nick, or you must supply the correct password for
+&nbsp;the nickname.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>GHOST</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>GHOST <u>nickname</u> [<u>password</u>]</b>
+&nbsp;
+&nbsp;Terminates a &quot;ghost&quot; IRC session using your nick.  A
+&nbsp;&quot;ghost&quot; session is one which is not actually connected,
+&nbsp;but which the IRC server believes is still online for one
+&nbsp;reason or another.  Typically, this happens if your
+&nbsp;computer crashes or your Internet or modem connection
+&nbsp;goes down while you're on IRC.
+&nbsp;
+&nbsp;In order to use the <b>GHOST</b> command for a nick, your
+&nbsp;current address as shown in /WHOIS must be on that nick's
+&nbsp;access list, you must be identified and in the group of
+&nbsp;that nick, or you must supply the correct password for
+&nbsp;the nickname.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>INFO</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>INFO <u>nickname</u> [ALL]</b>
+&nbsp;
+&nbsp;Displays information about the given nickname, such as
+&nbsp;the nick's owner, last seen address and time, and nick
+&nbsp;options. If you are identified for the nick you're 
+&nbsp;getting information for and <b>ALL</b> is specified, you will
+&nbsp;be shown all the information; regardless of whether 
+&nbsp;it's hidden or not.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>LIST</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>LIST <u>pattern</u></b>
+&nbsp;
+&nbsp;Lists all registered nicknames which match the given
+&nbsp;pattern, in <u>nick!user@host</u> format.  Nicks with the
+&nbsp;<b>PRIVATE</b> option set will not be displayed.
+&nbsp;
+&nbsp;Examples:
+&nbsp;
+&nbsp;    <b>LIST *!joeuser@foo.com</b>
+&nbsp;        Lists all nicks owned by joeuser@foo.com.
+&nbsp;
+&nbsp;    <b>LIST *Bot*!*@*</b>
+&nbsp;        Lists all registered nicks with <b>Bot</b> in their
+&nbsp;        names (case insensitive).
+&nbsp;
+&nbsp;    <b>LIST *!*@*.bar.org</b>
+&nbsp;        Lists all nicks owned by users in the <b>bar.org</b>
+&nbsp;        domain.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>ALIST</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>ALIST [<u>level</u>]</b>
+&nbsp;
+&nbsp;Lists all channels you have access on. Optionally, you can specify
+&nbsp;a level in XOP or ACCESS format. The resulting list will only 
+&nbsp;include channels where you have the given level of access.
+
+&nbsp;Examples:
+&nbsp;    <b>ALIST Founder</b>
+&nbsp;	    Lists all channels where you have Founder
+&nbsp;		access.
+
+&nbsp;	<b>ALIST AOP</b>
+&nbsp;	    Lists all channels where you have AOP access 
+&nbsp;		or greater.
+
+&nbsp;	<b>ALIST 10</b>
+&nbsp;	    Lists all channels where you have level 10 
+&nbsp;		access or greater.
+&nbsp;
+&nbsp;Channels that have the <u>NOEXPIRE</u> option set will be prefixed by 
+&nbsp;an exclamation mark.
+&nbsp;
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>GLIST</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>GLIST</b>
+&nbsp;
+&nbsp;Lists all nicks in your group.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>STATUS</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>STATUS <u>nickname</u>...</b>
+&nbsp;
+&nbsp;Returns whether the user using the given nickname is
+&nbsp;recognized as the owner of the nickname.  The response has
+&nbsp;this format:
+&nbsp;
+&nbsp;    <u>nickname</u> <u>status-code</u>
+&nbsp;
+&nbsp;where <u>nickname</u> is the nickname sent with the command, and
+&nbsp;<u>status-code</u> is one of the following:
+&nbsp;
+&nbsp;    0 - no such user online <b>or</b> nickname not registered
+&nbsp;    1 - user not recognized as nickname's owner
+&nbsp;    2 - user recognized as owner via access list only
+&nbsp;    3 - user recognized as owner via password identification
+&nbsp;
+&nbsp;Up to sixteen nicknames may be sent with each command; the
+&nbsp;rest will be ignored.  No error message is generated if no
+&nbsp;nickname is given.
+&nbsp;
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>SENDPASS</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>SENDPASS <u>nickname</u></b>
+&nbsp;
+&nbsp;Send the password of the given nickname to the e-mail address
+&nbsp;set in the nickname record. This command is really useful
+&nbsp;to deal with lost passwords.
+&nbsp;
+&nbsp;May be limited to <b>IRC operators</b> on certain networks.
+&nbsp;
+&nbsp;This command is unavailable when encryption is enabled.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>SERVADMIN HELP</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;
+&nbsp;The following commands are available to Services admins:
+&nbsp;
+&nbsp;    <b>GETPASS</b>    Retrieve the password for a nickname
+&nbsp;                   (only if encryption is disabled)
+&nbsp;    <b>FORBID</b>     Prevent a nickname from being used
+&nbsp;
+&nbsp;Services admins can also drop any nickname without needing
+&nbsp;to identify for the nick, and may view the access list for
+&nbsp;any nickname (<b>/msg NickServ ACCESS LIST <u>nick</u></b>).
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>SERVADMIN LOGOUT</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>LOGOUT [<u>nickname</u> [REVALIDATE]]</b>
+&nbsp;
+&nbsp;Without a parameter, reverses the effect of the <b>IDENTIFY</b> 
+&nbsp;command, i.e. make you not recognized as the real owner of the nick
+&nbsp;anymore. Note, however, that you won't be asked to reidentify
+&nbsp;yourself.
+&nbsp;
+&nbsp;With a parameter, does the same for the given nick. If you 
+&nbsp;specify REVALIDATE as well, Services will ask the given nick
+&nbsp;to re-identify. This use limited to <b>Services admins</b>.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>SERVADMIN DROP</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>DROP [<u>nickname</u>]</b>
+&nbsp;
+&nbsp;Without a parameter, drops your nickname from the
+&nbsp;NickServ database.
+&nbsp;
+&nbsp;With a parameter, drops the named nick from the database.
+&nbsp;You may drop any nick within your group without any 
+&nbsp;special privileges. Dropping any nick is limited to 
+&nbsp;<b>Services admins</b>.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>SERVADMIN SET</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;
+&nbsp;Services admins can also set the option <b>NOEXPIRE</b>, with
+&nbsp;which nicknames can be prevented from expiring.
+&nbsp;Additionally, Services admins can set options for any
+&nbsp;nickname without entering a password, using the format
+&nbsp;<b>SET <u>nickname</u> <u>option</u> <u>parameters</u></b>.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>SERVADMIN SET NOEXPIRE</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>SET [<u>nickname</u>] NOEXPIRE {ON | OFF}</b>
+&nbsp;
+&nbsp;Sets whether the given nickname will expire.  Setting this
+&nbsp;to <b>ON</b> prevents the nickname from expiring.  If no
+&nbsp;nickname is given, sets the no-expire flag for your nick.
+&nbsp;
+&nbsp;Limited to <b>Services admins</b>.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>SERVADMIN LIST</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>LIST <u>pattern</u> [FORBIDDEN] [NOEXPIRE]</b>
+&nbsp;
+&nbsp;Lists all registered nicknames which match the given
+&nbsp;pattern, in <u>nick!user@host</u> format.  Nicks with the <b>PRIVATE</b>
+&nbsp;option set will only be displayed to Services admins.  Nicks
+&nbsp;with the <b>NOEXPIRE</b> option set will have a <b>!</b> prepended to the
+&nbsp;nickname for Services admins.
+&nbsp;
+&nbsp;If the FORBIDDEN or NOEXPIRE options are given, only nicks
+&nbsp;which, respectively, are FORBIDDEN or have the NOEXPIRE flag
+&nbsp;set will be displayed.  If both options are given, both
+&nbsp;types of nicks will be displayed.  These options are limited
+&nbsp;to <u>Services admins</u>.
+&nbsp;
+&nbsp;Examples:
+&nbsp;
+&nbsp;    <b>LIST *!joeuser@foo.com</b>
+&nbsp;        Lists all registered nicks owned by joeuser@foo.com.
+&nbsp;
+&nbsp;    <b>LIST *Bot*!*@*</b>
+&nbsp;        Lists all registered nicks with <b>Bot</b> in their
+&nbsp;        names (case insensitive).
+&nbsp;
+&nbsp;    <b>LIST * NOEXPIRE</b>
+&nbsp;        Lists all registered nicks which have been set to
+&nbsp;        not expire.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>SERVADMIN ALIST</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>ALIST [<u>nickname</u>] [<u>level</u>]</b>
+&nbsp;
+&nbsp;With no parameters, lists channels you have access on. With
+&nbsp;one parameter, lists channels that <b>nickname</b> has access 
+&nbsp;on. With two parameters lists channels that <b>nickname</b> has 
+&nbsp;<b>level</b> access or greater on.
+
+&nbsp;This use limited to <b>Services admins</b>.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>SERVADMIN GLIST</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>GLIST [<u>nickname</u>]</b>
+&nbsp;
+&nbsp;Without a parameter, lists all nicknames that are in
+&nbsp;your group.
+&nbsp;
+&nbsp;With a parameter, lists all nicknames that are in the
+&nbsp;group of the given nick.
+&nbsp;This use limited to <b>Services admins</b>.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>SERVADMIN GETPASS</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>GETPASS <u>nickname</u></b>
+&nbsp;
+&nbsp;Returns the password for the given nickname.  <b>Note</b> that
+&nbsp;whenever this command is used, a message including the
+&nbsp;person who issued the command and the nickname it was used
+&nbsp;on will be logged and sent out as a WALLOPS/GLOBOPS.
+&nbsp;
+&nbsp;Limited to <b>Services admins</b>.
+&nbsp;
+&nbsp;This command is unavailable when encryption is enabled.
+
+</font></pre>
+	</li>
+	<li><font face="Arial"><b>SERVADMIN FORBID</b><br>
+&nbsp;</font><pre><font face="Arial">&nbsp;<i>Syntax:</i> /msg NickServ  <b>FORBID <u>nickname</u> [<u>reason</u>]</b>
+&nbsp;
+&nbsp;Disallows a nickname from being registered or used by
+&nbsp;anyone.  May be canceled by dropping the nick.
+&nbsp;
+&nbsp;On certain networks, reason is required.
+&nbsp;
+&nbsp;Limited to <b>Services admins</b>.
+
+</font></pre>
+	</li>
+</ul>
+
+</body>
+
+</html>
